@@ -1,0 +1,44 @@
+# NSW RealVision with the database mounted read-only. See docs/self-hosting.md.
+#   docker compose up -d                    # http://localhost:3000
+#   docker compose --profile tls up -d      # also Caddy with automatic HTTPS for $DOMAIN
+services:
+  app:
+    build:
+      context: .
+      args:
+        VITE_BASEMAP_LIGHT_URL: ${VITE_BASEMAP_LIGHT_URL:-}
+        VITE_MAP_STYLE_DARK_URL: ${VITE_MAP_STYLE_DARK_URL:-}
+        VITE_MAP_STYLE_LIGHT_MONO_URL: ${VITE_MAP_STYLE_LIGHT_MONO_URL:-}
+        VITE_VECTOR_TILES_URL: ${VITE_VECTOR_TILES_URL:-}
+        VITE_MAP_GLYPHS_URL: ${VITE_MAP_GLYPHS_URL:-}
+    image: nsw-realvision
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      DUCKDB_PATH: /data/realvision.duckdb
+      DUCKDB_MEMORY_LIMIT: ${DUCKDB_MEMORY_LIMIT:-1GB}
+      DUCKDB_THREADS: ${DUCKDB_THREADS:-2}
+    volumes:
+      - ./data:/data:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  caddy:
+    image: caddy:2
+    profiles: ["tls"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    command: caddy reverse-proxy --from ${DOMAIN:?set DOMAIN to your hostname} --to app:3000
+    volumes:
+      - caddy-data:/data
+    depends_on:
+      - app
+
+volumes:
+  caddy-data:

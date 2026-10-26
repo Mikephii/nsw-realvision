@@ -1,0 +1,13 @@
+{
+  "name": "nsw-realvision-demo",
+  "private": true,
+  "type": "module",
+  "description": "Records the README demo from the real app. See demo/README.md.",
+  "scripts": {
+    "record": "node record.mjs",
+    "encode": "node encode.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

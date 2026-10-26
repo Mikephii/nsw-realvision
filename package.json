@@ -1,0 +1,19 @@
+{
+  "name": "nsw-realvision",
+  "private": true,
+  "description": "Explore NSW property price growth on a hex heatmap, built from public NSW Valuer General sales data.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "pnpm --dir scripts install && pnpm --dir webapp install",
+    "dev": "pnpm --dir webapp dev",
+    "build": "pnpm --dir webapp build",
+    "etl": "pnpm --dir scripts etl",
+    "test": "pnpm --dir scripts test && pnpm --dir webapp test",
+    "typecheck": "pnpm --dir scripts typecheck && pnpm --dir webapp exec tsc --noEmit"
+  }
+}

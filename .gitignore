@@ -1,0 +1,28 @@
+# Data (large, never committed): raw NSW VG files, G-NAF, and the DuckDB database
+data/
+NSWVGData/
+GNAFData/
+*.duckdb
+*.duckdb.wal
+
+# Node and build output
+node_modules/
+.output/
+.nitro/
+.tanstack/
+dist/
+
+# Local settings
+.env
+.env.local
+.env.*.local
+
+# Demo recordings (only docs/media/ is committed)
+demo/out/
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+.claude/
+*.log

@@ -1,0 +1,29 @@
+# Raw data files (large, local-only; mount the database at runtime instead)
+NSWVGData/
+GNAFData/
+data/
+
+# Build artifacts
+node_modules/
+**/node_modules/
+.output/
+.tanstack/
+.nitro/
+
+# Not needed in the webapp image
+scripts/
+docs/
+demo/
+
+# Git and IDE
+.git/
+.github/
+.vscode/
+.idea/
+.claude/
+
+# Misc
+*.md
+.env*
+.dockerignore
+Dockerfile
