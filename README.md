@@ -18,13 +18,8 @@ It runs on your machine or a small server, with no external database or API keys
 
 ## Demo
 
-![The growth heatmap flying from NSW into Sydney Harbour](docs/media/heatmap-preview.gif)
+https://github.com/user-attachments/assets/910bea20-9133-4005-a849-de7bb31b63fe
 
-<!-- DEMO VIDEO: drag demo/out/nsw-realvision-demo.mp4 here in the GitHub editor -->
-
-The full demo flies from NSW into Sydney Harbour, across the North Shore and up the Northern Beaches.
-It hovers hexes, opens a suburb's price curve, and changes the time range so the colours shift. It is
-recorded from the real app with [demo/](demo/README.md).
 
 | Hover any hex | Open its price history |
 |---|---|
